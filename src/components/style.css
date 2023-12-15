@@ -1,0 +1,86 @@
+.main {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 20%;
+    padding-bottom: 100%;
+    background-image: url('./milky-way-2695569_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+
+.contain {
+    /* display: flex; */
+    position: relative;
+    color: white;
+    place-items: center;
+    width: auto;
+    height: auto;
+    outline: 2rem;
+    backdrop-filter: blur(10px);
+    outline-color: white;
+    margin: 20px;
+    padding: 20px;
+    border: 0.5px solid;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.input {
+    text-align: center;
+    display: flex;
+    margin-top: 1rem;
+    padding: 2px;
+}
+
+.accept {
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    margin: 2px;
+    padding: 2px;
+    outline: none;
+    background: transparent;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.accept:hover {
+    color: white;
+    background-color: rgba(234, 235, 236, 0.316);
+}
+
+.accept::placeholder {
+    color: white;
+}
+
+form {
+    justify-content: center;
+}
+
+.bttn {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+    background: transparent;
+    border-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.bttn:hover {
+    color: white;
+    background-color: rgba(234, 235, 236, 0.316);
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    border: 210px;
+}
