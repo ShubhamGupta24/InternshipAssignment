@@ -16,12 +16,13 @@ import "./style.css";
 // import logo
 export const Profile = () => {
     const history = useNavigate();
-    const [description, setDescription] = useState('I am cool');
-    const [newDescription, setNewDescription] = useState('');
+    const [newDescription, setNewDescription] = useState('"eg : I am cool"');
     const [loadDescription, setLoadDescription] = useState(false);
     const [loadTask, setLoadTask] = useState(false);
-    const [alltask, setAllTask] = useState('task 1');
-    const [newTask, setNewTask] = useState('');
+    const [newTask, setNewTask] = useState('"eg : task 1"');
+    const [newPost, setNewPost] = useState(false);
+
+
     const [uid, setUid] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -31,8 +32,8 @@ export const Profile = () => {
 
 
     useEffect(() => {
-        console.log('root');
         try {
+
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     // User is signed in, see docs for a list of available properties
@@ -59,33 +60,43 @@ export const Profile = () => {
         } catch (error) {
             console.log(error);
         }
-    }, [auth.currentUser])
+    }, [uid, photo])
+
 
 
 
     const PostTask = () => {
 
-        if (uid && addTask) {
-            try {
-                console.log(uid);
+        if (uid) {
+            if (addTask() && addDescription() && newTask !== '"eg : task 1"' && newDescription !== '"eg : task 1"') {
+                try {
+                    console.log(uid);
 
-                const res = fetch(ref(database) + "/UserRecords/" + uid + "/Tasks.json", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }, body: JSON.stringify({
-                        taskdescription: description,
-                        taskName: alltask
-                    }),
-                });
-                if (res) {
-                    toast.success("Tasks Added");
-                } else {
-                    toast.warning("plz fill the data");
+                    const res = fetch(ref(database) + "/UserRecords/" + uid + "/Tasks.json", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }, body: JSON.stringify({
+                            taskdescription: newDescription,
+                            taskName: newTask
+                        }),
+                    });
+                    if (res) {
+                        toast.success("Tasks Added");
+                        setLoadDescription(false);
+                        setLoadTask(false);
+                        setNewPost(false);
+                    } else {
+                        toast.warning("plz fill the data");
+                    }
+                } catch (error) {
+                    // if (error.code === 'auth/email-alread-in-use')
+                    console.log(error);
+
                 }
-            } catch (error) {
-                // if (error.code === 'auth/email-alread-in-use')
-                console.log(error);
+            }
+            else {
+                toast.warning("Update Task Info");
 
             }
         }
@@ -130,38 +141,38 @@ export const Profile = () => {
 
     const task = () => {
         setLoadTask(true);
+        setNewTask("");
     }
     const addTask = () => {
         if (!newTask) {
             toast.warning('Task Cannot be empty')
         }
         else {
-            setAllTask(newTask);
-            setLoadTask(false);
-            PostTask();
             return true;
         }
     }
 
+
+    const done = () => {
+        addDescription();
+        addTask();
+        setLoadDescription(false);
+        setLoadTask(false);
+        setNewPost(true);
+    }
     const describe = () => {
         setLoadDescription(true);
+        setNewDescription("");
     }
     const addDescription = () => {
         if (!newDescription) {
             toast.warning('Description Cannot be empty')
         }
         else {
-            setDescription(newDescription);
-            setLoadDescription(false)
+            return true;
         }
     }
-    const HandleDescription = (e) => {
-        e.preventDefault();
-        const value = e.target.value;
-        console.log(value);
-        setNewDescription(value);
-        console.log((value));
-    }
+
     return (
         <>
             <div style={{
@@ -176,7 +187,6 @@ export const Profile = () => {
 
                 <Container
                     className='contain'>
-                    <h2 style={{ color: 'white', textAlign: 'center !important' }}>Profile Page</h2>
                     <Row
                         style={{
                             padding: '15px',
@@ -186,6 +196,9 @@ export const Profile = () => {
                             border: '2px solid white',
                             margin: '1%'
                         }}>
+                        <div>
+                            <h2 style={{ display: 'flex', color: 'white', justifyContent: 'center' }}>Your Profile </h2>
+                        </div>
                         <Col
                             style={{
                                 display: 'flex',
@@ -194,6 +207,7 @@ export const Profile = () => {
                                 padding: '2%',
                                 marginRight: '2%'
                             }}>
+
                             <img src={photo}
                                 width="200rem"
                                 height='200rem'
@@ -271,16 +285,17 @@ export const Profile = () => {
 
                     </Row>
                     <div>
-                        <h1 style={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}>Add Task</h1>
+
                         <div style={{
                             border: '2px solid white',
                             padding: '2%',
                             margin: '1%',
                             borderRadius: '10px'
                         }}>
+                            <h1 style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}>Add Task</h1>
                             {
                                 loadTask ? (
                                     <>
@@ -314,22 +329,7 @@ export const Profile = () => {
                                             }}
                                             type="text"
                                             placeholder={"Add Task"}
-                                            value={newTask}
                                             onChange={(e) => { setNewTask(e.target.value) }} />
-                                        <button
-                                            onClick={addTask}
-                                            style={{
-                                                background: 'transparent',
-                                                margin: '5px',
-                                                border: '2px solid white',
-                                                borderRadius: '10px',
-                                                color: 'white',
-                                                width: '6rem',
-                                                justifyContent: 'center'
-                                            }}
-                                        >
-                                            <span>Done</span>
-                                        </button>
                                     </>
 
 
@@ -362,7 +362,7 @@ export const Profile = () => {
                                             padding: "5px",
                                             width: 'auto',
                                             fontSize: '20px'
-                                        }}>{alltask}</div>
+                                        }}>{newTask}</div>
 
                                     </>
                                 )
@@ -399,7 +399,7 @@ export const Profile = () => {
                                             padding: "5px",
                                             width: 'auto',
                                             fontSize: '20px'
-                                        }}>{description}</div>
+                                        }}>{newDescription}</div>
 
                                     </>) : (
                                     <>
@@ -432,32 +432,65 @@ export const Profile = () => {
                                             }}
                                             type="text"
                                             placeholder={"Add Description"}
-                                            value={newDescription}
-                                            onChange={HandleDescription} />
-                                        <button
-                                            onClick={addDescription}
-                                            style={{
-                                                background: 'transparent',
-                                                margin: '5px',
-                                                border: '2px solid white',
-                                                borderRadius: '10px',
-                                                color: 'white',
-                                                width: '6rem',
-                                                justifyContent: 'center'
-                                            }}
-                                        >
-                                            <span>Done</span>
-                                        </button>
+                                            onChange={(e) => { setNewDescription(e.target.value) }} />
+
                                     </>
                                 )
                             }
+                            {
+                                loadDescription || loadTask ? (
+                                    <>
+                                        <div>
+                                            <button
+                                                onClick={done}
+                                                style={{
+                                                    background: 'transparent',
+                                                    margin: '5px',
+                                                    border: '2px solid white',
+                                                    borderRadius: '10px',
+                                                    color: 'white',
+                                                    width: '6rem',
+                                                    justifyContent: 'center'
+                                                }}
+                                            >
+                                                <span>Done</span>
+                                            </button>
+                                        </div>
 
+                                    </>
+                                ) : (
+                                    newPost ? (
+                                        <>
+                                            <div>
+                                                <button
+                                                    onClick={PostTask}
+                                                    style={{
+                                                        background: 'transparent',
+                                                        margin: '5px',
+                                                        border: '2px solid white',
+                                                        borderRadius: '10px',
+                                                        color: 'white',
+                                                        width: '6rem',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                >
+                                                    <span>Post Task</span>
+                                                </button>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div />
+                                    )
+                                )
+
+                            }
                         </div>
 
                     </div>
                     <Row>
-                        <TasksShow uid={uid} />
-
+                        
+                            <TasksShow uid={uid} />
+                        
                     </Row>
                     <ToastContainer />
                 </Container>

@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .main {
     text-align: center;
     justify-content: center;
@@ -12,8 +18,7 @@
 
 
 .contain {
-    /* display: flex; */
-    position: relative;
+    display: block;
     color: white;
     place-items: center;
     width: auto;
@@ -29,7 +34,6 @@
 }
 
 .input {
-    text-align: center;
     display: flex;
     margin-top: 1rem;
     padding: 2px;
@@ -83,4 +87,75 @@ form {
     color: white;
     text-decoration: none;
     border: 210px;
+}
+
+.home {
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+    background-image: url('./milky-way-2695569_1280.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    color: aliceblue;
+}
+
+.nav {
+    backdrop-filter: blur(4px);
+    position: relative;
+    width: 100%;
+    border-bottom: 0.1rem solid #59C65B;
+    justify-items: center;
+    align-items: center;
+}
+
+.icons {
+    text-decoration: none;
+    opacity: 100%;
+    justify-items: center;
+    align-items: center;
+    color: rgb(251, 250, 250);
+    margin: 1.15vw;
+    padding: 1vmin;
+    font-size: 5vmin;
+    font-family: serif;
+}
+
+.carousel img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@media (width>600px) {
+    .nav {
+        border-bottom: 0.3rem solid #59C65B;
+    }
+
+    .carousel {
+        gap: 2px;
+        display: block;
+        flex-wrap: wrap;
+        place-items: center;
+        width: 100%;
+        max-width: 70vmax;
+        height: 410px;
+        margin: auto;
+    }
+}
+
+@media (width<600px) {
+    .carousel {
+        row-gap: 2px;
+        position: absolute;
+        place-items: center;
+        justify-items: center;
+        align-items: center;
+        width: 90%;
+        object-fit: cover;
+        margin: auto;
+    }
 }
