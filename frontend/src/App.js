@@ -1,5 +1,5 @@
 import './App.css';
-import  Home  from './components/Home';
+import Home from './components/Home';
 import { Login } from './components/Login';
 import { Profile } from './components/Profile';
 import { Register } from "./components/Register";
@@ -18,7 +18,7 @@ function App() {
           <Route exact path='/Register' element={<Register />} />
           <Route exact path='/Profile' element={<Profile />} />
           <Route exact path='/OTP' element={<OTP />} />
-          <Route exact path='/Chat' element={ <Chat/>} />
+          <Route exact path='/Chat' element={<Chat />} />
           <Route exact path='/PasswordReset' element={<PasswordReset />} />
           <Route exact path='/TasksShow' element={<TasksShow />} />
         </Routes>
