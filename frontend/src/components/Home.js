@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaInstagram, FaLinkedinIn, FaGithubSquare } from "react-icons/fa";
 import Slider from 'react-slick';
+import "./style.css"
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -41,9 +42,9 @@ export const Home = () => {
                         }} />
                     <span>BeFitSocial</span></Link>
                 <ol>
-                    <Link className='icons' id='A' to='/'><FaHome /></Link>
-                    <Link className='icons' id='A' to='/login'>LogIn </Link>
-                    <Link className='icons' id='A' to='/Register'>Register </Link>
+                    <Link className='icons' to='/'><FaHome /></Link>
+                    <Link className='icons' to='/login'>LogIn </Link>
+                    <Link className='icons' to='/Register'>Register </Link>
                 </ol>
             </div>
 
@@ -65,6 +66,29 @@ export const Home = () => {
                         ))}
                     </Slider>
                 </div>
+            </div>
+            <div className="footer">
+                <span style={{ fontSize: '1.8vmax' }}>Connect with developer:</span>
+                <Link to='https://github.com/ShubhamGupta24'
+                    style={{
+                        textDecoration: 'none',
+                        padding: '0', margin: '1vw',
+                        color: '#59C65B'
+                    }}><FaGithubSquare size={40} /></Link>
+                <Link to="https://www.instagram.com/its_shubham_guys?igsh=MWJhZ3UzY3FnbnBtdA"
+                    style={{
+                        textDecoration: 'none',
+                        padding: '1vw',
+                        margin: '1vw',
+                        color: '#59C65B'
+                    }}><FaInstagram size={40} /></Link>
+                <Link to="https://www.linkedin.com/in/shubham-gupta-4930b522a"
+                    style={{
+                        textDecoration: 'none',
+                        padding: '1vw',
+                        margin: '1vw',
+                        color: '#59C65B'
+                    }}><FaLinkedinIn size={40} /></Link>
             </div>
         </div>
     )

@@ -5,9 +5,9 @@
 }
 
 .main {
+    display: block;
     text-align: center;
     justify-content: center;
-    display: flex;
     padding-top: 20%;
     padding-bottom: 100%;
     background-image: url('./milky-way-2695569_1280.jpg');
@@ -130,6 +130,16 @@ form {
     height: 100%;
 }
 
+.footer {
+    backdrop-filter: blur(4px);
+    position: relative;
+    width: 100%;
+    border-top: 0.1rem solid #59C65B;
+    justify-items: center;
+    align-items: center;
+    padding: 2vmax;
+}
+
 @media (width>600px) {
     .nav {
         border-bottom: 0.3rem solid #59C65B;
@@ -148,6 +158,10 @@ form {
 }
 
 @media (width<600px) {
+    .home {
+        height: 70%;
+    }
+
     .carousel {
         row-gap: 2px;
         position: absolute;
@@ -158,4 +172,39 @@ form {
         object-fit: cover;
         margin: auto;
     }
+}
+
+main {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 100%;
+    background-image: url('./milky-way-2695569_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+.messageBox {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: white;
+    place-items: center;
+    width: 95%;
+    height: 90%;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.rMessage {
+    float: left;
+    margin: .5vh;
+}
+
+.sMessage {
+    float: right;
+    margin: .5vh;
 }

@@ -96,8 +96,6 @@ export const Register = () => {
         <section className='main' >
             <div className='contain'>
                 <h1>Register</h1>
-                {/* <pre>{JSON.stringify(emailRef, undefined, 2)}</pre>
-            <pre>{JSON.stringify(passwordRef, undefined, 2)}</pre> */}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label

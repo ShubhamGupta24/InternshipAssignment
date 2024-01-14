@@ -7,6 +7,7 @@ import { OTP } from './components/OTP';
 import { PasswordReset } from "./components/PasswordReset";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { TasksShow } from './components/TasksShow';
+import { Chat } from './components/Chat';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/Register' element={<Register />} />
           <Route exact path='/Profile' element={<Profile />} />
           <Route exact path='/OTP' element={<OTP />} />
+          <Route exact path='/Chat' element={ <Chat/>} />
           <Route exact path='/PasswordReset' element={<PasswordReset />} />
           <Route exact path='/TasksShow' element={<TasksShow />} />
         </Routes>
