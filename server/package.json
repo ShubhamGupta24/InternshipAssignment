@@ -10,6 +10,7 @@
   "author": "Shubham_Gupta",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.5",
     "express": "^4.18.2",
     "nodemon": "^3.0.2",
     "socket.io": "^4.7.2"

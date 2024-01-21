@@ -69,6 +69,7 @@ form {
 .bttn {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    padding: .5vmax;
     text-align: center;
     color: white;
     background: transparent;
@@ -80,7 +81,7 @@ form {
 
 .bttn:hover {
     color: white;
-    background-color: rgba(234, 235, 236, 0.316);
+    background-color: rgba(3, 4, 4, 0.316);
 }
 
 .link {

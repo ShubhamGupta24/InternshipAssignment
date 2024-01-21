@@ -31,21 +31,22 @@ export const Home = () => {
         <div className='home'>
 
             <div className='nav'>
-                <Link className='icons' to='/'>
-                    <img src='./logo1.svg'
-                        style={{
-                            marginBottom: '.25vmax',
-                            width: '4vmax',
-                            height: '4vmax',
-                            border: '.12vmax  solid #59C65B',
-                            borderRadius: '2vmax'
-                        }} />
-                    <span>BeFitSocial</span></Link>
-                <ol>
+                <ul>
+                    <Link className='icons' to='/'>
+                        <img src='./logo1.svg' alt='Logo'
+                            style={{
+                                marginBottom: '.25vmax',
+                                width: '4vmax',
+                                height: '4vmax',
+                                border: '.12vmax  solid #59C65B',
+                                borderRadius: '2vmax'
+                            }} />
+                        <span>BeFitSocial</span></Link>
+
                     <Link className='icons' to='/'><FaHome /></Link>
                     <Link className='icons' to='/login'>LogIn </Link>
                     <Link className='icons' to='/Register'>Register </Link>
-                </ol>
+                </ul>
             </div>
 
             <div style={{
@@ -68,27 +69,29 @@ export const Home = () => {
                 </div>
             </div>
             <div className="footer">
-                <span style={{ fontSize: '1.8vmax' }}>Connect with developer:</span>
-                <Link to='https://github.com/ShubhamGupta24'
-                    style={{
-                        textDecoration: 'none',
-                        padding: '0', margin: '1vw',
-                        color: '#59C65B'
-                    }}><FaGithubSquare size={40} /></Link>
-                <Link to="https://www.instagram.com/its_shubham_guys?igsh=MWJhZ3UzY3FnbnBtdA"
-                    style={{
-                        textDecoration: 'none',
-                        padding: '1vw',
-                        margin: '1vw',
-                        color: '#59C65B'
-                    }}><FaInstagram size={40} /></Link>
-                <Link to="https://www.linkedin.com/in/shubham-gupta-4930b522a"
-                    style={{
-                        textDecoration: 'none',
-                        padding: '1vw',
-                        margin: '1vw',
-                        color: '#59C65B'
-                    }}><FaLinkedinIn size={40} /></Link>
+                <ul>
+                    <span style={{ fontSize: '1.8vmax' }}>Connect with developer:</span>
+                    <Link to='https://github.com/ShubhamGupta24'
+                        style={{
+                            textDecoration: 'none',
+                            padding: '0', margin: '1vw',
+                            color: '#59C65B'
+                        }}><FaGithubSquare size={40} /></Link>
+                    <Link to="https://www.instagram.com/its_shubham_guys?igsh=MWJhZ3UzY3FnbnBtdA"
+                        style={{
+                            textDecoration: 'none',
+                            padding: '1vw',
+                            margin: '1vw',
+                            color: '#59C65B'
+                        }}><FaInstagram size={40} /></Link>
+                    <Link to="https://www.linkedin.com/in/shubham-gupta-4930b522a"
+                        style={{
+                            textDecoration: 'none',
+                            padding: '1vw',
+                            margin: '1vw',
+                            color: '#59C65B'
+                        }}><FaLinkedinIn size={40} /></Link>
+                </ul>
             </div>
         </div>
     )

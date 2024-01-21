@@ -8,6 +8,9 @@ import { PasswordReset } from "./components/PasswordReset";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { TasksShow } from './components/TasksShow';
 import { Chat } from './components/Chat';
+import { Map } from './components/Map';
+
+
 function App() {
   return (
     <>
@@ -21,6 +24,7 @@ function App() {
           <Route exact path='/Chat' element={<Chat />} />
           <Route exact path='/PasswordReset' element={<PasswordReset />} />
           <Route exact path='/TasksShow' element={<TasksShow />} />
+          <Route exact path='/Map' element={<Map />} />
         </Routes>
       </Router>
     </>

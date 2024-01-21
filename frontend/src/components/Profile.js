@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import { HiPencilSquare } from "react-icons/hi2";
-import { MdAddAPhoto } from "react-icons/md";
+import { MdAddAPhoto, } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,18 +11,25 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, database, upload } from "../firebase";
 import { TasksShow } from './TasksShow';
 import { ref } from 'firebase/database';
+import { useAuth } from '../Context/Context';
 import "./style.css";
 
-// import logo
+
 export const Profile = () => {
-    const history = useNavigate();
+    // For Current Location of User
+    const { address, location } = useAuth();
+    const [localAddress, setLocalAddress] = useState(false)
+    const [coordinates, setCoordinates] = useState(null);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    // For task management
     const [newDescription, setNewDescription] = useState('"eg : I am cool"');
     const [loadDescription, setLoadDescription] = useState(false);
     const [loadTask, setLoadTask] = useState(false);
     const [newTask, setNewTask] = useState('"eg : task 1"');
     const [newPost, setNewPost] = useState(false);
-
-
+    // for User Details
     const [uid, setUid] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -33,14 +40,10 @@ export const Profile = () => {
 
     useEffect(() => {
         try {
-
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/auth.user
-                    // uid = user.uid;
+                    // User is signed in
                     setUid(user.uid);
-                    console.log(user);
                     setUsername(user.displayName);
                     setEmail(user.email);
                     setPhoto(user.photoURL);
@@ -53,16 +56,38 @@ export const Profile = () => {
                 }
                 else {
                     // User is signed out
-                    console.log('none');
+                    console.log('User Signed Out');
                 }
 
             })
+            if ('geolocation' in navigator) {
+                // navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+                // Shubham Always Remember thatdo not make mistake in the above convention of navigator
+                navigator.geolocation.getCurrentPosition(
+                    // Success callback
+                    function (position) {
+                        const { latitude, longitude } = position.coords;
+
+                        console.log(position);
+                        setCoordinates({ latitude, longitude });
+                        console.log({ latitude, longitude });
+                    },
+                    // Error callback
+                    function (error) {
+                        console.error('Error getting location:', error.message);
+                        setError('Unable to retrieve location.');
+                    },
+                    { enableHighAccuracy: true }
+                );
+                console.log("lat:", coordinates.latitude)
+                console.log("lng:", coordinates.longitude)
+            } else {
+                setError('Geolocation is not supported by your browser.');
+            }
         } catch (error) {
             console.log(error);
         }
     }, [uid, photo])
-
-
 
 
     const PostTask = () => {
@@ -107,7 +132,6 @@ export const Profile = () => {
 
     const profilePhoto = () => {
         setLoading(true)
-
     }
 
     const handlePhoto = (e) => {
@@ -130,7 +154,7 @@ export const Profile = () => {
         if (uid) {
             await signOut(auth).then((userCredential) => {
                 console.log('successfully signout');
-                history('/login');
+                navigate('/login');
             }).catch((error) => {
                 // An error happened.
                 console.log(error);
@@ -160,10 +184,12 @@ export const Profile = () => {
         setLoadTask(false);
         setNewPost(true);
     }
+
     const describe = () => {
         setLoadDescription(true);
         setNewDescription("");
     }
+
     const addDescription = () => {
         if (!newDescription) {
             toast.warning('Description Cannot be empty')
@@ -171,6 +197,16 @@ export const Profile = () => {
         else {
             return true;
         }
+    }
+
+    const myLocation = async () => {
+        if (coordinates) {
+            console.log("I am from", location(coordinates));
+            location(coordinates);
+            setLocalAddress(true);
+        }
+        else
+            alert("Coordinates Not Found");
     }
 
     return (
@@ -230,9 +266,16 @@ export const Profile = () => {
                             padding: '2%'
                         }}>
 
-                            <div><span className='input'>UserName : {username} </span></div>
+                            <div><label className='input'>UserName : {username} </label></div>
 
                             <div><label className='input'>Email : {email}</label></div>
+
+                            <div>
+                                {
+                                    !localAddress ?
+                                        (<button className='bttn' onClick={myLocation}>GetMyLocation</button>)
+                                        : (<><label className='input'>Address : {address}</label></>)}
+                            </div>
 
                         </Col>
 
@@ -487,10 +530,10 @@ export const Profile = () => {
                         </div>
 
                     </div>
-                    <Row>
-                        
-                            <TasksShow uid={uid} />
-                        
+                    <Row className="justify-content-center">
+
+                        <TasksShow uid={uid} />
+
                     </Row>
                     <ToastContainer />
                 </Container>
