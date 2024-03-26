@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { TasksShow } from './components/TasksShow';
 import { Chat } from './components/Chat';
 import { Map } from './components/Map';
+import Map2 from './components/Map2';
+import MapComponent from './components/MapComponent';
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route exact path='/PasswordReset' element={<PasswordReset />} />
           <Route exact path='/TasksShow' element={<TasksShow />} />
           <Route exact path='/Map' element={<Map />} />
+          <Route exact path='/Map2' element={<Map2 />} />
+          <Route exact path='/MapComponent' element={<MapComponent />} />
         </Routes>
       </Router>
     </>

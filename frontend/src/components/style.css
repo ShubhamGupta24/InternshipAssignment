@@ -5,31 +5,36 @@
 }
 
 .main {
-    display: block;
-    text-align: center;
-    justify-content: center;
-    padding-top: 20%;
-    padding-bottom: 100%;
     background-image: url('./milky-way-2695569_1280.jpg');
+    /* URL of your main image */
     background-size: cover;
+    /* Scale the background image to cover the entire .main element */
     background-position: center;
-    box-sizing: border-box;
+    /* Position the background image in the center */
+    background-repeat: no-repeat;
+    /* Do not repeat the background image */
+    height: 100vh;
+    /* Set height to fill the viewport */
+    display: flex;
+    /* Use flexbox to center the .contain element */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
 }
 
 
 .contain {
-    display: block;
+    display: flex;
+    flex-direction: column;
     color: white;
     place-items: center;
-    width: auto;
-    height: auto;
     outline: 2rem;
     backdrop-filter: blur(10px);
     outline-color: white;
     margin: 20px;
     padding: 20px;
-    border: 0.5px solid;
-    border-color: white;
+    border: 0.5px solid rgb(255, 255, 255);
     border-radius: 10px;
 }
 
@@ -63,6 +68,9 @@
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
@@ -93,7 +101,6 @@ form {
 .home {
     display: flex;
     flex-wrap: wrap;
-    color: black;
     background-image: url('./milky-way-2695569_1280.jpg');
     background-position: center;
     background-size: cover;
@@ -107,6 +114,7 @@ form {
 .nav {
     backdrop-filter: blur(4px);
     position: relative;
+    padding-top: 2vh;
     width: 100%;
     border-bottom: 0.1rem solid #59C65B;
     justify-items: center;
@@ -175,16 +183,6 @@ form {
     }
 }
 
-main {
-    display: block;
-    text-align: center;
-    justify-content: center;
-    padding-bottom: 100%;
-    background-image: url('./milky-way-2695569_1280.jpg');
-    background-size: cover;
-    background-position: center;
-    box-sizing: border-box;
-}
 
 .messageBox {
     display: flex;
@@ -201,11 +199,28 @@ main {
 }
 
 .rMessage {
+    display: flex;
     float: left;
     margin: .5vh;
 }
 
 .sMessage {
+    display: flex;
     float: right;
     margin: .5vh;
+}
+
+.acceptBox {
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
 }

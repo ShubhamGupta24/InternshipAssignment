@@ -17,10 +17,8 @@ import "./style.css";
 
 export const Profile = () => {
     // For Current Location of User
-    const { address, location } = useAuth();
+    const { address, location, coordinates } = useAuth();
     const [localAddress, setLocalAddress] = useState(false)
-    const [coordinates, setCoordinates] = useState(null);
-    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     // For task management
@@ -29,6 +27,7 @@ export const Profile = () => {
     const [loadTask, setLoadTask] = useState(false);
     const [newTask, setNewTask] = useState('"eg : task 1"');
     const [newPost, setNewPost] = useState(false);
+
     // for User Details
     const [uid, setUid] = useState('');
     const [email, setEmail] = useState('');
@@ -60,30 +59,9 @@ export const Profile = () => {
                 }
 
             })
-            if ('geolocation' in navigator) {
-                // navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-                // Shubham Always Remember thatdo not make mistake in the above convention of navigator
-                navigator.geolocation.getCurrentPosition(
-                    // Success callback
-                    function (position) {
-                        const { latitude, longitude } = position.coords;
 
-                        console.log(position);
-                        setCoordinates({ latitude, longitude });
-                        console.log({ latitude, longitude });
-                    },
-                    // Error callback
-                    function (error) {
-                        console.error('Error getting location:', error.message);
-                        setError('Unable to retrieve location.');
-                    },
-                    { enableHighAccuracy: true }
-                );
-                console.log("lat:", coordinates.latitude)
-                console.log("lng:", coordinates.longitude)
-            } else {
-                setError('Geolocation is not supported by your browser.');
-            }
+
+
         } catch (error) {
             console.log(error);
         }
@@ -201,8 +179,8 @@ export const Profile = () => {
 
     const myLocation = async () => {
         if (coordinates) {
-            console.log("I am from", location(coordinates));
-            location(coordinates);
+            console.log("I am from location");
+            location();
             setLocalAddress(true);
         }
         else
@@ -211,15 +189,16 @@ export const Profile = () => {
 
     return (
         <>
-            <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                boxSizing: 'content-box',
-                backgroundImage: `url('./milky-way-2695569_1280.jpg')`,
-                backgroundSize: 'cover',
-                padding: '15px'
-            }}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    boxSizing: 'content-box',
+                    backgroundImage: `url('./milky-way-2695569_1280.jpg')`,
+                    backgroundSize: 'cover',
+                    padding: '15px'
+                }}>
 
                 <Container
                     className='contain'>
@@ -257,14 +236,15 @@ export const Profile = () => {
                                 }}
                                 alt='Profile' />
                         </Col>
-                        <Col style={{
-                            fontFamily: "sans-serif",
-                            fontSize: "20px",
-                            width: '100rem',
-                            backdropFilter: 'blur(100px)',
-                            borderRadius: "10px",
-                            padding: '2%'
-                        }}>
+                        <Col
+                            style={{
+                                fontFamily: "sans-serif",
+                                fontSize: "20px",
+                                width: '100rem',
+                                backdropFilter: 'blur(100px)',
+                                borderRadius: "10px",
+                                padding: '2%'
+                            }}>
 
                             <div><label className='input'>UserName : {username} </label></div>
 
@@ -329,12 +309,13 @@ export const Profile = () => {
                     </Row>
                     <div>
 
-                        <div style={{
-                            border: '2px solid white',
-                            padding: '2%',
-                            margin: '1%',
-                            borderRadius: '10px'
-                        }}>
+                        <div
+                            style={{
+                                border: '2px solid white',
+                                padding: '2%',
+                                margin: '1%',
+                                borderRadius: '10px'
+                            }}>
                             <h1 style={{
                                 display: 'flex',
                                 justifyContent: 'center'

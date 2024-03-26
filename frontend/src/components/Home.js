@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaInstagram, FaLinkedinIn, FaGithubSquare } from "react-icons/fa";
 import Slider from 'react-slick';
-import "./style.css"
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import "./style.css"
+
+
 export const Home = () => {
 
     const slides = [

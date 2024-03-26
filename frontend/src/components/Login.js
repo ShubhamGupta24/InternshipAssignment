@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
+import { Container } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
@@ -65,7 +66,7 @@ export const Login = () => {
             <div className='main'>
                 <div className="contain">
                     <h1>Login</h1>
-                    <form className='form' disabled={loading} onSubmit={handleSubmit}>
+                    <form disabled={loading} onSubmit={handleSubmit}>
                         <div className='inputfield'>
                             <label className='input' htmlFor='email'>Email</label>
                             <input className='accept'
