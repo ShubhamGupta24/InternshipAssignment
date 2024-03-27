@@ -184,14 +184,10 @@ form {
 }
 
 
-.messageBox {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+.messageBox {    
     color: white;
-    place-items: center;
     width: 95%;
-    height: 90%;
+    height: 90vh;
     margin: 20px;
     padding: 20px;
     border: 1px solid white;
@@ -199,14 +195,14 @@ form {
 }
 
 .rMessage {
-    display: flex;
     float: left;
+    clear: both;
     margin: .5vh;
 }
 
 .sMessage {
-    display: flex;
     float: right;
+    clear: both;
     margin: .5vh;
 }
 
