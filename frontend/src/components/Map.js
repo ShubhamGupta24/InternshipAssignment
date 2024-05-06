@@ -43,10 +43,14 @@ export const Map = () => {
                 { id: 2, position: [coords.latitude, coords.longitude], icon: customIcon2 },
                 // Add more locations as needed
             ])
+
+
         }
         else {
             setMarkerData([{ id: 1, position: [coordinates.latitude, coordinates.longitude], icon: customIcon }])
         }
+
+
     }, [coordinates])
 
     const myLocation = async () => {
@@ -67,37 +71,22 @@ export const Map = () => {
     // Function to plot the route
     const plotRoute = async () => {
         console.log("Hi plot1 from Map.js") // San Francisco, CA
-        L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=IaxuUc5MPMSu7ZhCgNj5");
-        console.log("Hi plot2 from Map.js")
-        // mapRef.current = map
-        if (coords) {
-            console.log("Hi plot3 from Map.js")
+        if (!mapRef.current) {
+            console.log("Initializing the map...");
+            const map = L.map('map').setView(position, 12); // San Francisco, CA
+            L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=IaxuUc5MPMSu7ZhCgNj5").addTo(map);
+            mapRef.current = map;
 
-            // Use a routing service to get the route information
-            try {
-                
+            const origin = L.latLng(coordinates.latitude, coordinates.longitude); // San Francisco, CA
+            const destination = L.latLng(coords.latitude, coords.longitude); // Kolkata, India
 
-                const routeUrl = `http://router.project-osrm.org//route/v1/driving/13.388860,52.517037;13.397634,52.529407;13.428555,52.523219?alternatives={true}&steps={true}&geometries={polyline}&overview={full}&annotations={true}`;
-                console.log(routeUrl)
+            L.marker(origin, { icon: customIcon }).addTo(map);
+            L.marker(destination).addTo(map);
 
-                console.log("Hi plot4 from Map.js")
-
-                const response = await axios.get(routeUrl);
-                const route = response.data.routes[0].geometry;
-
-                // Use the route information to display on the map
-                L.Routing.control({
-                    waypoints: [
-                        L.latLng(coordinates.latitude, coordinates.longitude),
-                        L.latLng(coords.latitude, coords.longitude),
-                    ],
-                })
-                    .addTo(mapRef.current) // Make sure to have a reference to your map container
-                    .getPlan()
-                    .setRoute(route);
-            } catch (error) {
-                console.error("Error fetching route:", error);
-            }
+            L.Routing.control({
+                waypoints: [L.latLng(origin), L.latLng(destination)],
+                routeWhileDragging: true,
+            }).addTo(map);
         }
     };
 
@@ -118,7 +107,7 @@ export const Map = () => {
     // let position = [coordinates.latitude, coordinates.longitude]
     console.log(position, "opop")
     return (
-        <main >
+        <div className="main">
             <Container style={{ color: "white", display: "block", position: "relative" }} >
                 <Row style={{ height: "40vmax" }}>
                     <Col
@@ -192,7 +181,7 @@ export const Map = () => {
                 </Row>
 
             </Container>
-        </main >
+        </div >
 
     );
 }

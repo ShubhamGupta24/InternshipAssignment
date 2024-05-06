@@ -57,12 +57,15 @@ export const Chat = () => {
           border: '2px solid white',
           borderRadius: '10px',
           position: 'relative',
-          top: '5vmax',
-          height: '50%',
+          height: '60%',
           backdropFilter: 'blur(50px)',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          color: 'white'
         }}>
+        <h1 style={{ margin: '10px', padding: '15px' }}>
+          Let's Chat
+        </h1>
         <div className='acceptBox'>
           <label style={{ color: 'white' }} >Enter Room Code</label>
           <input className='accept' type='text' onChange={(e) => { setRoom(e.target.value) }} />

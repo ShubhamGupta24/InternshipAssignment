@@ -40,7 +40,7 @@ export const TasksShow = (props) => {
                 des = task.taskdescription
             }
         });
-        if (des!=='')
+        if (des !== '')
             alert(`Task Found and Task Description : ${des}`);
 
         else
@@ -57,15 +57,16 @@ export const TasksShow = (props) => {
     }
     return (
         <>
-            <div style={{
-                padding: '20px',
-                margin: '18px',
-                background: 'transparent',
-                color: 'white',
-                border: 'white 2px solid ',
-                borderRadius: '10px',
-                width: '95%'
-            }} >
+            <div
+                style={{
+                    padding: '20px',
+                    margin: '18px',
+                    background: 'transparent',
+                    color: 'white',
+                    border: 'white 2px solid ',
+                    borderRadius: '10px',
+                    width: '95%'
+                }} >
                 <h1 style={{
                     display: 'flex',
                     justifyContent: 'center'
@@ -127,7 +128,6 @@ export const TasksShow = (props) => {
                                                             <div style={{ marginTop: "20px", fontSize: '20px' }} >Task Name : {task.taskName} </div>
                                                             <div style={{ marginTop: "20px", marginBottom: "20px", fontSize: '20px' }} > Task Description : {task.taskdescription} </div>
                                                             <button className='bttn' onClick={() => DeleteTask(task.id)}>delete</button>
-
                                                         </div>
                                                     </div>
                                                     )

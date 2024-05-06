@@ -1,13 +1,13 @@
-import { createContext, useContext, useState, useRef, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [coordinates, setCoordinates] = useState({ latitude: 0, longitude: 0 })
+    const [coordinates, setCoordinates] = useState({ latitude: 0, longitude: 0 })//current coodinates
     const [error, setError] = useState(null);
     const [address, setAddress] = useState("");
-    const [coords, setCoords] = useState({ latitude: 0, longitude: 0 });
+    const [coords, setCoords] = useState({ latitude: 0, longitude: 0 });//destination coordinates
 
     useEffect(() => {
         console.log("123")

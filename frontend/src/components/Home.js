@@ -12,8 +12,7 @@ export const Home = () => {
     const slides = [
         { id: 1, image: './Ad1.png', alt: 'Advertisement 1', width: '100%', height: 'auto' },
         { id: 2, image: './Ad2.png', alt: 'Advertisement 2', width: '100%', height: 'auto' },
-        { id: 2, image: './Ad3.png', alt: 'Advertisement 2', width: '100%', height: 'auto' },
-        // Add more slides as needed
+        { id: 3, image: './Ad3.png', alt: 'Advertisement 2', width: '100%', height: 'auto' },
     ];
 
 
